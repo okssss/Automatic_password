@@ -15,3 +15,18 @@ function generatePassword($length=9, $strength=8) {
  if ($strength >= 8 ) {
  $vowels .= '@#$%';
  }
+ // Генерируем пароль
+ $password = '';
+ $alt = time() % 2;
+ for ($i = 0; $i < $length; $i++) {
+ if ($alt == 1) {
+ $password .= $consonants[(rand() % strlen($consonants))];
+ $alt = 0;
+ } else {
+ $password .= $vowels[(rand() % strlen($vowels))];
+ $alt = 1;
+ }
+ }
+ return $password;
+}
+echo generatePassword();
